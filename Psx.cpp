@@ -36,21 +36,19 @@ byte Psx::shift(byte _dataOut)							// Does the actual shifting, both in and ou
 	for (_i = 0; _i <= 7; _i++)
 	{
 		
-		
 		if ( _dataOut & (1 << _i) ) digitalWrite(_cmndPin, HIGH);	// Writes out the _dataOut bits
 		else digitalWrite(_cmndPin, LOW);
 
-		digitalWrite(_clockPin, LOW);
+		digitalWrite(_clockPin, HIGH);
 		
-		delayMicroseconds(_delay);
-
 		_temp = digitalRead(_dataPin);					// Reads the data pin
 		if (_temp)
 		{
 			_dataIn = _dataIn | (B10000000 >> _i);		// Shifts the read data into _dataIn
 		}
+		delayMicroseconds(_delay);
 
-		digitalWrite(_clockPin, HIGH);
+		digitalWrite(_clockPin, LOW);
 		delayMicroseconds(_delay);
 	}
 	return _dataIn;
