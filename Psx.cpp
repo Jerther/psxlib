@@ -30,23 +30,18 @@ Psx::Psx()
 
 byte Psx::shift(byte _dataOut)							// Does the actual shifting, both in and out simultaneously
 {
-	_temp = 0;
-	_dataIn = 0;
-
 	for (_i = 0; _i <= 7; _i++)
 	{
 		digitalWrite(_clockPin, LOW);
 		digitalWrite(_cmndPin, bitRead(_dataOut, _i));
-		delayMicroseconds(_delay);
 		digitalWrite(_clockPin, HIGH);
 		bitWrite(_dataIn, 7 - _i, digitalRead(_dataPin));
-		delayMicroseconds(_delay);
 	}
 	return _dataIn;
 }
 
 
-void Psx::setupPins(byte dataPin, byte cmndPin, byte attPin, byte clockPin, byte delay)
+void Psx::setupPins(byte dataPin, byte cmndPin, byte attPin, byte clockPin)
 {
 	pinMode(dataPin, INPUT);
 	digitalWrite(dataPin, HIGH);	// Turn on internal pull-up
@@ -62,8 +57,6 @@ void Psx::setupPins(byte dataPin, byte cmndPin, byte attPin, byte clockPin, byte
 	pinMode(clockPin, OUTPUT);
 	_clockPin = clockPin;
 	digitalWrite(_clockPin, HIGH);
-	
-	_delay = delay;
 }
 
 
