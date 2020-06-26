@@ -51,12 +51,7 @@ class Psx
 {
 	public:
 		Psx();
-		void setupPins(byte , byte , byte , byte , byte );		// (Data Pin #, CMND Pin #, ATT Pin #, CLK Pin #, Delay)
-															// Delay is how long the clock goes without changing state
-															// in Microseconds. It can be lowered to increase response,
-															// but if it is too low it may cause glitches and have some
-															// keys spill over with false-positives. A regular PSX controller
-															// works fine at 50 uSeconds.
+		void setupPins(byte, byte, byte, byte);			// (Data Pin #, CMND Pin #, ATT Pin #, CLK Pin #)
 															
 		unsigned int read();								// Returns the status of the button presses in an unsignd int.
 															// The value returned corresponds to each key as defined above.
@@ -69,9 +64,7 @@ class Psx
 		byte _attPin;
 		byte _clockPin;
 		
-		byte _delay;
 		byte _i;
-		boolean _temp;
 		byte _dataIn;
 		
 		byte _data1;
