@@ -18,13 +18,13 @@ Used to initialize the library
 Ex: 
 ```
 Psx Psx;
-setupPins(dataPin, cmndPin, attPin, clockPin, delay)
+setupPins(dataPin, cmndPin, attPin, clockPin)
 ```
 
-Defines which pins on the arduino are connected to the controller, as well as the delay on how long the clock remains high and low.
+Defines which pins on the arduino are connected to the controller.
 Ex:
 ```
-Psx.setupPins(2, 3, 4, 5, 10)
+Psx.setupPins(2, 3, 4, 5)
 read()
 ```
 
